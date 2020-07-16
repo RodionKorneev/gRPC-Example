@@ -59,6 +59,38 @@ public final class UserServiceGrpc {
      return getLoginMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<com.example.grpc.ExampleProto.LoginRequest,
+      com.example.grpc.ExampleProto.LoginResponse> getGetMessagesMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "getMessages",
+      requestType = com.example.grpc.ExampleProto.LoginRequest.class,
+      responseType = com.example.grpc.ExampleProto.LoginResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
+  public static io.grpc.MethodDescriptor<com.example.grpc.ExampleProto.LoginRequest,
+      com.example.grpc.ExampleProto.LoginResponse> getGetMessagesMethod() {
+    io.grpc.MethodDescriptor<com.example.grpc.ExampleProto.LoginRequest, com.example.grpc.ExampleProto.LoginResponse> getGetMessagesMethod;
+    if ((getGetMessagesMethod = UserServiceGrpc.getGetMessagesMethod) == null) {
+      synchronized (UserServiceGrpc.class) {
+        if ((getGetMessagesMethod = UserServiceGrpc.getGetMessagesMethod) == null) {
+          UserServiceGrpc.getGetMessagesMethod = getGetMessagesMethod = 
+              io.grpc.MethodDescriptor.<com.example.grpc.ExampleProto.LoginRequest, com.example.grpc.ExampleProto.LoginResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
+              .setFullMethodName(generateFullMethodName(
+                  "UserService", "getMessages"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.example.grpc.ExampleProto.LoginRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.example.grpc.ExampleProto.LoginResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new UserServiceMethodDescriptorSupplier("getMessages"))
+                  .build();
+          }
+        }
+     }
+     return getGetMessagesMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -93,6 +125,13 @@ public final class UserServiceGrpc {
       asyncUnimplementedUnaryCall(getLoginMethod(), responseObserver);
     }
 
+    /**
+     */
+    public void getMessages(com.example.grpc.ExampleProto.LoginRequest request,
+        io.grpc.stub.StreamObserver<com.example.grpc.ExampleProto.LoginResponse> responseObserver) {
+      asyncUnimplementedUnaryCall(getGetMessagesMethod(), responseObserver);
+    }
+
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
@@ -102,6 +141,13 @@ public final class UserServiceGrpc {
                 com.example.grpc.ExampleProto.LoginRequest,
                 com.example.grpc.ExampleProto.LoginResponse>(
                   this, METHODID_LOGIN)))
+          .addMethod(
+            getGetMessagesMethod(),
+            asyncServerStreamingCall(
+              new MethodHandlers<
+                com.example.grpc.ExampleProto.LoginRequest,
+                com.example.grpc.ExampleProto.LoginResponse>(
+                  this, METHODID_GET_MESSAGES)))
           .build();
     }
   }
@@ -131,6 +177,14 @@ public final class UserServiceGrpc {
       asyncUnaryCall(
           getChannel().newCall(getLoginMethod(), getCallOptions()), request, responseObserver);
     }
+
+    /**
+     */
+    public void getMessages(com.example.grpc.ExampleProto.LoginRequest request,
+        io.grpc.stub.StreamObserver<com.example.grpc.ExampleProto.LoginResponse> responseObserver) {
+      asyncServerStreamingCall(
+          getChannel().newCall(getGetMessagesMethod(), getCallOptions()), request, responseObserver);
+    }
   }
 
   /**
@@ -156,6 +210,14 @@ public final class UserServiceGrpc {
     public com.example.grpc.ExampleProto.LoginResponse login(com.example.grpc.ExampleProto.LoginRequest request) {
       return blockingUnaryCall(
           getChannel(), getLoginMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public java.util.Iterator<com.example.grpc.ExampleProto.LoginResponse> getMessages(
+        com.example.grpc.ExampleProto.LoginRequest request) {
+      return blockingServerStreamingCall(
+          getChannel(), getGetMessagesMethod(), getCallOptions(), request);
     }
   }
 
@@ -187,6 +249,7 @@ public final class UserServiceGrpc {
   }
 
   private static final int METHODID_LOGIN = 0;
+  private static final int METHODID_GET_MESSAGES = 1;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -207,6 +270,10 @@ public final class UserServiceGrpc {
       switch (methodId) {
         case METHODID_LOGIN:
           serviceImpl.login((com.example.grpc.ExampleProto.LoginRequest) request,
+              (io.grpc.stub.StreamObserver<com.example.grpc.ExampleProto.LoginResponse>) responseObserver);
+          break;
+        case METHODID_GET_MESSAGES:
+          serviceImpl.getMessages((com.example.grpc.ExampleProto.LoginRequest) request,
               (io.grpc.stub.StreamObserver<com.example.grpc.ExampleProto.LoginResponse>) responseObserver);
           break;
         default:
@@ -271,6 +338,7 @@ public final class UserServiceGrpc {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
               .setSchemaDescriptor(new UserServiceFileDescriptorSupplier())
               .addMethod(getLoginMethod())
+              .addMethod(getGetMessagesMethod())
               .build();
         }
       }

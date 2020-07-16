@@ -1336,9 +1336,10 @@ public final class ExampleProto {
       "\n\022ExampleProto.proto\"2\n\014LoginRequest\022\020\n\010" +
       "username\030\001 \001(\t\022\020\n\010password\030\002 \001(\t\">\n\rLogi" +
       "nResponse\022\024\n\014responseCode\030\001 \001(\005\022\027\n\017respo" +
-      "nseMessage\030\002 \001(\t25\n\013UserService\022&\n\005login" +
-      "\022\r.LoginRequest\032\016.LoginResponseB\022\n\020com.e" +
-      "xample.grpcb\006proto3"
+      "nseMessage\030\002 \001(\t2e\n\013UserService\022&\n\005login" +
+      "\022\r.LoginRequest\032\016.LoginResponse\022.\n\013getMe" +
+      "ssages\022\r.LoginRequest\032\016.LoginResponse0\001B" +
+      "\022\n\020com.example.grpcb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {

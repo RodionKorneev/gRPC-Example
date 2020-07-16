@@ -18,6 +18,21 @@ public class UserService extends UserServiceGrpc.UserServiceImplBase {
             response.setResponseCode(1).setResponseMessage("invalid username");
         responseObserver.onNext(response.build());
         responseObserver.onCompleted();
+    }
 
+    @Override
+    public void getMessages(LoginRequest request, StreamObserver<LoginResponse> responseObserver) {
+        System.out.println(request);
+        LoginResponse.Builder response = LoginResponse.newBuilder();
+        for(int i = 0; i < 10; i++){
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            response.setResponseCode(i).setResponseMessage("Message " + String.valueOf(i));
+            responseObserver.onNext(response.build());
+        }
+        responseObserver.onCompleted();
     }
 }

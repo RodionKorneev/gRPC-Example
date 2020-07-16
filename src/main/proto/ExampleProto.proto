@@ -4,6 +4,7 @@ option java_package = "com.example.grpc";
 
 service UserService {
     rpc login(LoginRequest) returns (LoginResponse);
+    rpc getMessages(LoginRequest) returns (stream LoginResponse);
 }
 
 message LoginRequest{
@@ -15,3 +16,4 @@ message LoginResponse{
     int32 responseCode = 1;
     string responseMessage = 2;
 }
+
