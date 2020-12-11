@@ -1,6 +1,5 @@
 package com.example.service;
 
-import com.example.grpc.ExampleProto;
 import com.example.grpc.ExampleProto.LoginRequest;
 import com.example.grpc.ExampleProto.LoginResponse;
 import com.example.grpc.UserServiceGrpc;
